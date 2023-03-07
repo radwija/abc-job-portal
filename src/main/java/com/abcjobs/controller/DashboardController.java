@@ -95,30 +95,12 @@ public class DashboardController {
 
 	@RequestMapping(value = "/update-experience", method = RequestMethod.POST) // update profile POST
 	public String up(
-			// @ModelAttribute("profile") UserDetails userDetails,
-			@RequestParam("position") String position, @RequestParam("startDateEX") String startDateEX,
-			@RequestParam("endDateEX") String endDateEX, @RequestParam("companyNameEX") String companyNameEX,
+			@ModelAttribute("experience") Experiences ex, Model model, HttpSession session) {
 
-			Experiences experiences, Model model, HttpSession session) {
-
-		Long userDetailsId = Long.parseLong(String.valueOf(session.getAttribute("userId")));
+		Long experienceId = Long.parseLong(String.valueOf(session.getAttribute("experienceId")));
 		// ud.updateProfile(userDetailsId, userDetails);
-
-		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
-			System.out.println("Experiences Empty");
-		} else {
-			// exs.updateExperiences(String.valueOf(userDetailsId), experiences);
-
-			experiences.setPosition(position);
-			experiences.setStartDate(startDateEX);
-			experiences.setEndDate(endDateEX);
-			experiences.setCompanyName(companyNameEX);
-			experiences.setUserDetailsId(String.valueOf(userDetailsId));
-
-			exs.addExperiences(experiences);
-		}
-
-		this.setModel(model, session);
+		
+		exs.updateExperiences(experienceId, ex);
 
 		String msg = "New experience has been added";
 		model.addAttribute("message", msg);
@@ -126,6 +108,8 @@ public class DashboardController {
 		return "redirect:/profile";
 
 	}
+	
+
 
 	@RequestMapping(value = "/update-education", method = RequestMethod.POST) // update profile POST
 	public String up(
@@ -189,12 +173,9 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "edit-experience-{id}", method = RequestMethod.POST)
-	public String editExperience(@PathVariable("id") Long id, @RequestParam("position") String position,
-			@RequestParam("startDateEX") String startDateEX, @RequestParam("endDateEX") String endDateEX,
-			@RequestParam("companyNameEX") String companyNameEX, Experiences experiences, Model model,
-			HttpSession session) {
-		
-		exs.updateExperiences(id, position, startDateEX, endDateEX, companyNameEX);
+	public String editExperience(@ModelAttribute("experience") Experiences ex, Model model, HttpSession session) {
+		Long experienceId = Long.parseLong(String.valueOf(session.getAttribute("experienceId")));
+		exs.updateExperiences(experienceId, ex);
 		
 		return "redirect:/profile";
 	}
