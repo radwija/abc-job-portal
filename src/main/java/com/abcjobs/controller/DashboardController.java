@@ -109,8 +109,6 @@ public class DashboardController {
 		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
 			System.out.println("Experiences Empty");
 		} else {
-			// exs.updateExperiences(String.valueOf(userDetailsId), experiences);
-
 			experiences.setPosition(position);
 			experiences.setStartDate(startDateEX);
 			experiences.setEndDate(endDateEX);
@@ -129,44 +127,7 @@ public class DashboardController {
 
 	}
 
-	@RequestMapping(value = "/admin/profile/add-experience/{id}", method = RequestMethod.POST) // update profile POST
-	public String upa(
-			@PathVariable("id") Long id,
-			// @ModelAttribute("profile") UserDetails userDetails,
-			@RequestParam("position") String position, @RequestParam("startDateEX") String startDateEX,
-			@RequestParam("endDateEX") String endDateEX, @RequestParam("companyNameEX") String companyNameEX,
-
-			Experiences experiences, Model model, HttpSession session) {
-		
-		Long userDetailsId = id;
-//		if (String.valueOf(session.getAttribute("roleId")) == "1") {
-//			userDetailsId = id;
-//		} 
-		
-		// ud.updateProfile(userDetailsId, userDetails);
-
-		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
-			System.out.println("Experiences Empty");
-		} else {
-			// exs.updateExperiences(String.valueOf(userDetailsId), experiences);
-
-			experiences.setPosition(position);
-			experiences.setStartDate(startDateEX);
-			experiences.setEndDate(endDateEX);
-			experiences.setCompanyName(companyNameEX);
-			experiences.setUserDetailsId(String.valueOf(userDetailsId));
-
-			exs.addExperiences(experiences);
-		}
-
-		this.setModel(model, session);
-
-		String msg = "New experience has been added";
-		model.addAttribute("message", msg);
-		// return "dashboard/update-profile";
-		return "redirect:/admin/profile/" + id;
-
-	}
+	
 
 	@RequestMapping(value = "/add-education", method = RequestMethod.POST) // update profile POST
 	public String up(
@@ -197,6 +158,8 @@ public class DashboardController {
 		// return "dashboard/update-profile";
 		return "redirect:/profile";
 	}
+	
+	
 
 	private void setModel(Model model, HttpSession session) {
 		String userId = String.valueOf(session.getAttribute("userId"));
@@ -245,8 +208,9 @@ public class DashboardController {
 			@RequestParam("startDateED") String startDate, @RequestParam("endDateED") String endDate,
 			@RequestParam("educationName") String educationName, Educations educations, Model model,
 			HttpSession session) {
-
-		eds.updateExperiences(id, intitutionName, startDate, endDate, educationName);
+		
+		String userDetailsId = String.valueOf(session.getAttribute("userId"));
+		eds.updateExperiences(userDetailsId, id, intitutionName, startDate, endDate, educationName);
 
 		return "redirect:/profile";
 	}
@@ -269,6 +233,70 @@ public class DashboardController {
 		}
 
 		return "redirect:/profile";
+	}
+	
+//	Administrator
+	@RequestMapping(value = "/admin/profile/add-experience/{id}", method = RequestMethod.POST) // update profile POST
+	public String addNewExperienceForUser(
+			@PathVariable("id") Long id,
+			// @ModelAttribute("profile") UserDetails userDetails,
+			@RequestParam("position") String position, @RequestParam("startDateEX") String startDateEX,
+			@RequestParam("endDateEX") String endDateEX, @RequestParam("companyNameEX") String companyNameEX,
+
+			Experiences experiences, Model model, HttpSession session) {
+		
+		Long userDetailsId = id;
+
+		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
+			System.out.println("Experiences Empty");
+		} else {
+			experiences.setPosition(position);
+			experiences.setStartDate(startDateEX);
+			experiences.setEndDate(endDateEX);
+			experiences.setCompanyName(companyNameEX);
+			experiences.setUserDetailsId(String.valueOf(userDetailsId));
+
+			exs.addExperiences(experiences);
+		}
+
+		this.setModel(model, session);
+
+		String msg = "New experience has been added";
+		model.addAttribute("message", msg);
+		// return "dashboard/update-profile";
+		return "redirect:/admin/profile/" + id;
+
+	}
+	
+	@RequestMapping(value = "/admin/profile/add-education/{id}", method = RequestMethod.POST) // update profile POST
+	public String addNewEducationForUser(
+			@PathVariable("id") Long id,
+			// @ModelAttribute("profile") UserDetails userDetails,
+			@RequestParam("intitutionName") String intitutionName, @RequestParam("startDateED") String startDateED,
+			@RequestParam("endDateED") String endDateED, @RequestParam("educationName") String educationName,
+
+			Educations educations, Model model, HttpSession session) {
+		
+		Long userDetailsId = id;
+
+		if (intitutionName.equals("") || startDateED.equals("") || endDateED.equals("") || educationName.equals("")) {
+			System.out.println("Educations Empty");
+		} else {
+			educations.setEducationName(educationName);
+			educations.setStartDate(startDateED);
+			educations.setEndDate(endDateED);
+			educations.setIntitutionName(intitutionName);
+			educations.setUserDetailsId(String.valueOf(userDetailsId));
+
+			eds.addEducations(educations);
+		}
+
+		this.setModel(model, session);
+
+		String msg = "New education has been added";
+		model.addAttribute("message", msg);
+		// return "dashboard/update-profile";
+		return "redirect:/admin/profile/" + id;
 	}
 
 }
