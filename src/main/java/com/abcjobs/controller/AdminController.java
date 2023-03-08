@@ -156,7 +156,10 @@ public class AdminController {
 		if (Long.parseLong(String.valueOf(session.getAttribute("roleId"))) == 1) {
 		Long userDetailsId = userDetails.getUserDetailsId();
 		ud.updateProfile(userDetailsId, userDetails);
-		return "redirect:../all-users";}
+		
+//		return "redirect:../all-users";
+		return "redirect:/admin/profile/" + userDetailsId;
+		}
 		else {
 			return "redirect/not-permitted";
 		}
