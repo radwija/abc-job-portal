@@ -89,18 +89,38 @@ public class DashboardController {
 
 		String msg = "Profile has been updated";
 		model.addAttribute("message", msg);
-//		return "dashboard/profile";
+		// return "dashboard/profile";
 		return "redirect:/profile";
 	}
 
-	@RequestMapping(value = "/update-experience", method = RequestMethod.POST) // update profile POST
+	@RequestMapping(value = "/add-experience", method = RequestMethod.POST) // update profile POST
 	public String up(
-			@ModelAttribute("experience") Experiences ex, Model model, HttpSession session) {
 
-		Long experienceId = Long.parseLong(String.valueOf(session.getAttribute("experienceId")));
+			// @ModelAttribute("profile") UserDetails userDetails,
+			@RequestParam("position") String position, @RequestParam("startDateEX") String startDateEX,
+			@RequestParam("endDateEX") String endDateEX, @RequestParam("companyNameEX") String companyNameEX,
+
+			Experiences experiences, Model model, HttpSession session) {
+
+		Long userDetailsId = Long.parseLong(String.valueOf(session.getAttribute("userId")));
+
 		// ud.updateProfile(userDetailsId, userDetails);
-		
-		exs.updateExperiences(experienceId, ex);
+
+		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
+			System.out.println("Experiences Empty");
+		} else {
+			// exs.updateExperiences(String.valueOf(userDetailsId), experiences);
+
+			experiences.setPosition(position);
+			experiences.setStartDate(startDateEX);
+			experiences.setEndDate(endDateEX);
+			experiences.setCompanyName(companyNameEX);
+			experiences.setUserDetailsId(String.valueOf(userDetailsId));
+
+			exs.addExperiences(experiences);
+		}
+
+		this.setModel(model, session);
 
 		String msg = "New experience has been added";
 		model.addAttribute("message", msg);
@@ -108,10 +128,47 @@ public class DashboardController {
 		return "redirect:/profile";
 
 	}
-	
 
+	@RequestMapping(value = "/admin/profile/add-experience/{id}", method = RequestMethod.POST) // update profile POST
+	public String upa(
+			@PathVariable("id") Long id,
+			// @ModelAttribute("profile") UserDetails userDetails,
+			@RequestParam("position") String position, @RequestParam("startDateEX") String startDateEX,
+			@RequestParam("endDateEX") String endDateEX, @RequestParam("companyNameEX") String companyNameEX,
 
-	@RequestMapping(value = "/update-education", method = RequestMethod.POST) // update profile POST
+			Experiences experiences, Model model, HttpSession session) {
+		
+		Long userDetailsId = id;
+//		if (String.valueOf(session.getAttribute("roleId")) == "1") {
+//			userDetailsId = id;
+//		} 
+		
+		// ud.updateProfile(userDetailsId, userDetails);
+
+		if (position.equals("") || startDateEX.equals("") || endDateEX.equals("") || companyNameEX.equals("")) {
+			System.out.println("Experiences Empty");
+		} else {
+			// exs.updateExperiences(String.valueOf(userDetailsId), experiences);
+
+			experiences.setPosition(position);
+			experiences.setStartDate(startDateEX);
+			experiences.setEndDate(endDateEX);
+			experiences.setCompanyName(companyNameEX);
+			experiences.setUserDetailsId(String.valueOf(userDetailsId));
+
+			exs.addExperiences(experiences);
+		}
+
+		this.setModel(model, session);
+
+		String msg = "New experience has been added";
+		model.addAttribute("message", msg);
+		// return "dashboard/update-profile";
+		return "redirect:/admin/profile/" + id;
+
+	}
+
+	@RequestMapping(value = "/add-education", method = RequestMethod.POST) // update profile POST
 	public String up(
 			// @ModelAttribute("profile") UserDetails userDetails,
 			@RequestParam("intitutionName") String intitutionName, @RequestParam("startDateED") String startDateED,
@@ -137,7 +194,7 @@ public class DashboardController {
 
 		String msg = "New education has been added";
 		model.addAttribute("message", msg);
-//		return "dashboard/update-profile";
+		// return "dashboard/update-profile";
 		return "redirect:/profile";
 	}
 
@@ -173,42 +230,45 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "edit-experience-{id}", method = RequestMethod.POST)
-	public String editExperience(@ModelAttribute("experience") Experiences ex, Model model, HttpSession session) {
-		Long experienceId = Long.parseLong(String.valueOf(session.getAttribute("experienceId")));
-		exs.updateExperiences(experienceId, ex);
-		
+	public String editExperience(@PathVariable("id") Long id, @RequestParam("position") String position,
+			@RequestParam("startDateEX") String startDateEX, @RequestParam("endDateEX") String endDateEX,
+			@RequestParam("companyNameEX") String companyNameEX, Experiences experiences, Model model,
+			HttpSession session) {
+
+		exs.updateExperiences(id, position, startDateEX, endDateEX, companyNameEX);
+
 		return "redirect:/profile";
 	}
+
 	@RequestMapping(value = "edit-education-{id}", method = RequestMethod.POST)
 	public String editEducation(@PathVariable("id") Long id, @RequestParam("intitutionName") String intitutionName,
 			@RequestParam("startDateED") String startDate, @RequestParam("endDateED") String endDate,
 			@RequestParam("educationName") String educationName, Educations educations, Model model,
 			HttpSession session) {
-		
+
 		eds.updateExperiences(id, intitutionName, startDate, endDate, educationName);
-		
+
 		return "redirect:/profile";
 	}
-	
-	@RequestMapping(value="/delete/experience/{id}") 
+
+	@RequestMapping(value = "/delete/experience/{id}")
 	public String deleteExperienceById(@PathVariable("id") Long id, Model model) {
 		boolean isDeleted = exs.deleteExperienceById(id);
-		if(isDeleted) {
-//			model.addAttribute("err", "Cannot delete this education");
+		if (isDeleted) {
+			// model.addAttribute("err", "Cannot delete this education");
 		}
-		
+
 		return "redirect:/profile";
 	}
-	
-	
-	@RequestMapping(value="/delete/education/{id}") 
+
+	@RequestMapping(value = "/delete/education/{id}")
 	public String deleteEducationById(@PathVariable("id") Long id, Model model) {
 		boolean isDeleted = eds.deleteEducationById(id);
-		if(isDeleted) {
-//			model.addAttribute("err", "Cannot delete this education");
+		if (isDeleted) {
+			// model.addAttribute("err", "Cannot delete this education");
 		}
-		
+
 		return "redirect:/profile";
 	}
-	
+
 }
