@@ -150,7 +150,7 @@
 					}
 					%>
 					<li class="nav-item"><a class="btn btn-outline-danger"
-						style="border-radius: 100px" href="logout">Log out</a></li>
+						style="border-radius: 100px" href="<%=request.getContextPath()%>/logout">Log out</a></li>
 				</ul>
 			</div>
 			<%
