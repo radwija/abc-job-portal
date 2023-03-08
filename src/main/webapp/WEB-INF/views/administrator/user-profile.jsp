@@ -339,7 +339,7 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form action="edit-experience-${e.getExperienceId()}"
+											<form action="edit-experience/${id}/${e.getExperienceId()}"
 												method="post">
 												<div class="form-floating mb-3">
 													<input type="text" class="form-control" id="position"
@@ -394,7 +394,7 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="add-education" method="post">
+									<form action="add-education/${id}" method="post">
 										<div class="form-floating mb-3">
 											<input type="text" class="form-control" id="intitutionName"
 												name="intitutionName" required> <label
@@ -470,7 +470,7 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form action="edit-education-${e.getEducationId()}"
+										<form action="edit-education/${id}/${e.getEducationId()}"
 											method="post">
 											<div class="form-floating mb-3">
 												<input type="text" class="form-control" id="intitutionName"

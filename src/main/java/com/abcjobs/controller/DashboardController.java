@@ -209,8 +209,8 @@ public class DashboardController {
 			@RequestParam("educationName") String educationName, Educations educations, Model model,
 			HttpSession session) {
 		
-		String userDetailsId = String.valueOf(session.getAttribute("userId"));
-		eds.updateExperiences(userDetailsId, id, intitutionName, startDate, endDate, educationName);
+//		String userDetailsId = String.valueOf(session.getAttribute("userId"));
+		eds.updateEducations(id, intitutionName, startDate, endDate, educationName);
 
 		return "redirect:/profile";
 	}
@@ -297,6 +297,28 @@ public class DashboardController {
 		model.addAttribute("message", msg);
 		// return "dashboard/update-profile";
 		return "redirect:/admin/profile/" + id;
+	}
+	
+	@RequestMapping(value = "admin/profile/edit-experience/{userId}/{exId}", method = RequestMethod.POST)
+	public String editExperienceForUser(@PathVariable("userId") Long userId, @PathVariable("exId") Long exId, @RequestParam("position") String position,
+			@RequestParam("startDateEX") String startDateEX, @RequestParam("endDateEX") String endDateEX,
+			@RequestParam("companyNameEX") String companyNameEX, Experiences experiences, Model model,
+			HttpSession session) {
+		
+		exs.updateExperiences(exId, position, startDateEX, endDateEX, companyNameEX);
+
+		return "redirect:/admin/profile/" + userId;
+	}
+	
+	@RequestMapping(value = "admin/profile/edit-education/{userId}/{edId}", method = RequestMethod.POST)
+	public String editEducationForUser(@PathVariable("userId") Long userId, @PathVariable("edId") Long edId, @RequestParam("intitutionName") String intitutionName,
+			@RequestParam("startDateED") String startDate, @RequestParam("endDateED") String endDate,
+			@RequestParam("educationName") String educationName, Educations educations, Model model,
+			HttpSession session) {
+		
+		eds.updateEducations(edId, intitutionName, startDate, endDate, educationName);
+
+		return "redirect:/admin/profile/" + userId;
 	}
 
 }
