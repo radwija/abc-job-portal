@@ -320,5 +320,23 @@ public class DashboardController {
 
 		return "redirect:/admin/profile/" + userId;
 	}
+	
+	@RequestMapping(value = "admin/profile/delete/experience/{userId}/{exId}")
+	public String deleteExperience(@PathVariable("userId") Long userId, @PathVariable("exId") Long exId, Model model) {
+		boolean isDeleted = exs.deleteExperienceById(exId);
+		if (isDeleted) {
+			// model.addAttribute("err", "Cannot delete this education");
+		}
+		return "redirect:/admin/profile/" + userId;
+	}
+	
+	@RequestMapping(value = "admin/profile/delete/education/{userId}/{edId}")
+	public String deleteEducation(@PathVariable("userId") Long userId, @PathVariable("edId") Long edId, Model model) {
+		boolean isDeleted = eds.deleteEducationById(edId);
+		if (isDeleted) {
+			// model.addAttribute("err", "Cannot delete this education");
+		}
+		return "redirect:/admin/profile/" + userId;
+	}
 
 }

@@ -115,7 +115,10 @@
 <title>Profile Page</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="style/style.css">
 <style>
 .form-floating {
 	min-height: 60px;
@@ -321,7 +324,7 @@
 									<i class='bx bx-pencil'></i>
 								</button>
 								<button type="button" class="button-card-hover text-danger">
-									<a href="delete/experience/${e.getExperienceId()}"> <i
+									<a href="delete/experience/${id}/${e.getExperienceId()}"> <i
 										style="color: #DB282E" class='bx bx-trash'></i>
 									</a>
 								</button>
@@ -452,7 +455,7 @@
 									<i class='bx bx-pencil'></i>
 								</button>
 								<button type="button" class="button-card-hover text-danger">
-									<a href="delete/education/${e.getEducationId()}"> <i
+									<a href="delete/education/${id}/${e.getEducationId()}"> <i
 										style="color: #DB282E" class='bx bx-trash'></i>
 									</a>
 								</button>
@@ -509,7 +512,6 @@
 	</div>
 	<jsp:include page="../../footer.jsp"></jsp:include>
 	<script src="../js/profile.js"></script>
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
