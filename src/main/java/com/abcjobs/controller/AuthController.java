@@ -162,5 +162,10 @@ public class AuthController {
 		
 		return "redirect:/login";
 	}
+	
+	@RequestMapping(value="/not-permitted", method = RequestMethod.GET)
+	public ModelAndView checkRole(HttpSession session) throws Exception {
+		return new ModelAndView("login/not-permitted"); 
+	}
 
 }
