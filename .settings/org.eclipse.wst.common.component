@@ -6,7 +6,7 @@
     
     
     
-    <wb-module deploy-name="abcjobs">
+    <wb-module deploy-name="abcjobs_023">
                                                                 
         
         
@@ -43,7 +43,7 @@
         
         
         <property name="java-output-path" value="/JensProject/target/classes"/>
-        <property name="context-root" value="abcjobs"/>
+        <property name="context-root" value="abcjobs_023"/>
                                                             
     
     

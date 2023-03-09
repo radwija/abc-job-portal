@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>Springframework</groupId>
-	<artifactId>abcjobs</artifactId>
+	<artifactId>abcjobs_023</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>abcjobs</name>
+	<name>abcjobs_023</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -22,7 +22,7 @@
 	</properties>
 	
 	<dependencies>
-		<!-- abcjobs required dependencies -->
+		<!-- abcjobs_023 required dependencies -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -154,7 +154,7 @@
 	</repositories>
 
 	<build>
-		<finalName>abcjobs</finalName>
+		<finalName>abcjobs_023</finalName>
 		<plugins>
 		<plugin>
     		<groupId>org.apache.maven.plugins</groupId>
