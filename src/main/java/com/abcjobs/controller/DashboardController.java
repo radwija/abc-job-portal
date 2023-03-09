@@ -40,6 +40,7 @@ public class DashboardController {
 	@Autowired
 	BulkEmailService bes;
 
+	
 	@RequestMapping(value = "/dashboard") // profile overview
 	public ModelAndView dashboard(HttpSession session, Model model) throws Exception {
 		try {

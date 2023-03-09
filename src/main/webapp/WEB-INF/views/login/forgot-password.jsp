@@ -1,21 +1,4 @@
-<%-- <div class="container">
-	<h2>Reset your password</h2>
-	<p>Enter your email and we'll send you a link to reset your
-		password</p>
 
-	<form action="forgot-password" method="post">
-		<div class="form-floating mb-3">
-			<input type="email" class="form-control" id="floatingInput"
-				placeholder="name@example.com" name="emailAddress" required>
-			<label for="floatingInput">Email address</label>
-			<div class="invalid-feedback">Email address should be have @
-				and .</div>
-		</div>
-		<button type="submit" class="btn btn-primary">Reset your
-			password</button>
-	</form>
-</div>
-<jsp:include page="../../footer.jsp"></jsp:include> --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +12,6 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="style/style.css">
 <style>
 .form-floating {
 	min-height: 60px;
