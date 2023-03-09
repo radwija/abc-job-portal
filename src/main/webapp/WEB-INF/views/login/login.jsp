@@ -93,7 +93,7 @@
 			<!-- Form -->
 			<div class="col col-md-4">
 				<div class="shadow-sm p-3 mb-5 bg-white"
-					style="width: 400px; min-height: min-content; background-color: yellow; padding: 20px 20px 20px 20px; border-radius: 15px;">
+					style="width: 400px; min-height: min-content; padding: 20px 20px 20px 20px; border-radius: 15px;">
 					<div
 						class="alert alert-danger alert-dismissible fade show my-3 ${ message == null ? "
 						d-none" : "d-block" }" role="alert">

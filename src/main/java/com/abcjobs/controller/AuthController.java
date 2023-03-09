@@ -29,8 +29,11 @@ public class AuthController {
 	private UserDetailsService ud;
 	
 	@RequestMapping(value="/registration")
-	public ModelAndView registration(HttpSession session) throws Exception {
-		return new ModelAndView("registration/registration"); 
+	public String registration(HttpSession session) throws Exception {
+		if (session ==  null) {
+			return "/registration";	
+		}
+		return "redirect:/dashboard";
 	}
 	
 	@RequestMapping(value="/registration", method = RequestMethod.POST)
@@ -63,8 +66,11 @@ public class AuthController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ModelAndView login(HttpSession session) throws Exception {
-		return new ModelAndView("login/login"); 
+	public String login(HttpSession session) throws Exception {
+		if (session ==  null) {
+			return "/login";	
+		}
+		return "redirect:/dashboard";
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST) // login process
@@ -72,12 +78,12 @@ public class AuthController {
 			@ModelAttribute("login") Users user, Model model, 
 			HttpServletRequest req, HttpServletResponse res) {
 	
-		String rememberMe = req.getParameter("rememberMe");
+		
 		HttpSession session = req.getSession();
 		Users isLogin = us.login(user);
 		
 		if(isLogin != null) {
-			if(rememberMe != null) { // remember me checked
+//			if(rememberMe != null) { // remember me checked
 				Cookie eCookie = new Cookie("email", isLogin.getEmail());
 				eCookie.setMaxAge(10 * 60); // 10 minute
 				res.addCookie(eCookie);
@@ -85,7 +91,7 @@ public class AuthController {
 				Cookie iCookie = new Cookie("userId", String.valueOf(isLogin.getUserId()));
 				iCookie.setMaxAge(10 * 60);
 				res.addCookie(iCookie);
-			}
+//			}
 			
 			session.setAttribute("email", isLogin.getEmail());
 			session.setAttribute("userId", isLogin.getUserId());
