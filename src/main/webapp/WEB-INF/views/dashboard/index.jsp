@@ -78,11 +78,13 @@
 					<img height="60px" width="60px"
 						src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
 						alt="" style="margin-right: 10px; border-radius: 100%;"> <input
-						type="text" style="width: 520px; height: 50px; border-radius: 100px"
+						type="text"
+						style="width: 520px; height: 50px; border-radius: 100px"
 						placeholder="Create post">
 				</div>
 
-				<div class="shadow-sm p-3 mb-5 bg-white" style="border-radius: 15px;">
+				<div class="shadow-sm p-3 mb-5 bg-white"
+					style="border-radius: 15px;">
 					<div style="display: flex;">
 						<img src="https://cdn-icons-png.flaticon.com/512/147/147133.png"
 							alt="" width="55px" height="55px"
@@ -92,8 +94,9 @@
 							<p style="margin: 0;">2d ago</p>
 						</div>
 					</div>
-					<br> <img src="https://i.pinimg.com/736x/b4/6f/ca/b46fcaece36d4bbd2a8159136a99391a--keyboard.jpg" alt="" width="100%" height="300px"> <br>
-					<br>
+					<br> <img
+						src="https://i.pinimg.com/736x/b4/6f/ca/b46fcaece36d4bbd2a8159136a99391a--keyboard.jpg"
+						alt="" width="100%" height="300px"> <br> <br>
 					<div style="display: flex; justify-content: space-between;">
 						<span><i class="bi bi-hand-thumbs-up"></i> Like</span> <span><i
 							class="bi bi-chat"></i> Comment</span> <span><i
@@ -104,7 +107,30 @@
 
 
 			</div>
-			<div class="col-3"></div>
+			<div class="col-3">
+				<div class="py-3 px-4 rounded-3 border back bg-white">
+
+					<div class="border-bottom mb-3">
+						<h4 class="fs-4">${nf1.getEmailSubject()}</h4>
+						<p>Check your email</p>
+					</div>
+
+					<div class="border-bottom mb-3">
+						<h4 class="fs-4">${nf2.getEmailSubject()}</h4>
+						<p>Check your email</p>
+					</div>
+
+					<div class="border-bottom mb-3">
+						<h4 class="fs-4">${nf3.getEmailSubject()}</h4>
+						<p>Check your email</p>
+					</div>
+
+					<div class="text-center">
+						<a href="" class="btn btn-primary">See all notifications</a>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<jsp:include page="../../footer.jsp"></jsp:include>

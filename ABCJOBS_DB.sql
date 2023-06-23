@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for macos13 (arm64)
 --
--- Host: localhost    Database: communityportal
+-- Host: localhost    Database: communityportal_023
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -31,7 +31,7 @@ CREATE TABLE `bulk_email` (
   PRIMARY KEY (`bulk_id`),
   KEY `send_by` (`send_by`),
   CONSTRAINT `bulk_email_ibfk_1` FOREIGN KEY (`send_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `bulk_email` (
 
 LOCK TABLES `bulk_email` WRITE;
 /*!40000 ALTER TABLE `bulk_email` DISABLE KEYS */;
-INSERT INTO `bulk_email` VALUES (1,1,'[70% off] Early Black Friday access','Inj unsp musc/fasc/tend at thigh level, left thigh, init','2022-04-12 00:00:00'),(2,1,'How about 40% off this Black Friday?','Toxic effect of mycotoxin food contamnt, undetermined, subs	','2022-02-02 00:00:00'),(3,1,'Welcome! (Important info inside)','Strain extensor musc/fasc/tend r rng fngr at forarm lv, subs','2022-02-22 00:00:00');
+INSERT INTO `bulk_email` VALUES (1,1,'[70% off] Early Black Friday access','Inj unsp musc/fasc/tend at thigh level, left thigh, init','2022-04-12 00:00:00'),(2,1,'How about 40% off this Black Friday?','Toxic effect of mycotoxin food contamnt, undetermined, subs	','2022-02-02 00:00:00'),(3,1,'Welcome! (Important info inside)','Strain extensor musc/fasc/tend r rng fngr at forarm lv, subs','2022-02-22 00:00:00'),(4,1,'First bulk email','Hello ','2023-03-10 12:49:50'),(5,1,'Important !','not really...','2023-03-13 22:38:21');
 /*!40000 ALTER TABLE `bulk_email` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `educations` (
   PRIMARY KEY (`education_id`),
   KEY `user_details_id` (`user_details_id`),
   CONSTRAINT `educations_ibfk_1` FOREIGN KEY (`user_details_id`) REFERENCES `user_details` (`user_details_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `educations` (
 
 LOCK TABLES `educations` WRITE;
 /*!40000 ALTER TABLE `educations` DISABLE KEYS */;
-INSERT INTO `educations` VALUES (1,1,'California State University, Northridge','Education','2010-11-17','2014-07-01');
+INSERT INTO `educations` VALUES (1,1,'California State University, Northridge','Education','2010-11-17','2014-07-01'),(4,4,'Lithan Academy','Software Engineering','2023-03-09','2023-03-09');
 /*!40000 ALTER TABLE `educations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `experiences` (
   PRIMARY KEY (`experience_id`),
   KEY `user_details_id` (`user_details_id`),
   CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`user_details_id`) REFERENCES `user_details` (`user_details_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,6 +233,7 @@ CREATE TABLE `experiences` (
 
 LOCK TABLES `experiences` WRITE;
 /*!40000 ALTER TABLE `experiences` DISABLE KEYS */;
+INSERT INTO `experiences` VALUES (4,4,'ABC Cars','Fullstack Web Developer','2023-03-09','2023-03-09'),(7,5,'Krusty Krab Development','Front End Web Developer','2023-03-09','2023-03-09'),(9,4,'UAT Test Edit','Edit experience','2023-03-14','2023-03-14'),(10,1,'aaa','aates','2023-03-14','2023-03-14');
 /*!40000 ALTER TABLE `experiences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,7 +413,7 @@ CREATE TABLE `user_details` (
   KEY `city_id` (`city_id`),
   CONSTRAINT `user_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `user_details_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,7 +422,7 @@ CREATE TABLE `user_details` (
 
 LOCK TABLES `user_details` WRITE;
 /*!40000 ALTER TABLE `user_details` DISABLE KEYS */;
-INSERT INTO `user_details` VALUES (1,1,1,'Admin','Admin','Database Administrator I','Replacement of R Com Iliac Art with Synth Sub, Open Approach','Tagchat',NULL);
+INSERT INTO `user_details` VALUES (1,1,NULL,'Admin','Admin','Database Administrator I','I am administrator of ABC Jobs',' Open Approach','Tagchat'),(4,4,NULL,'Pande','Radwija','Fullstack Web Developer','Hello this is my account','XYZ Tuition','mywebsite.com'),(5,5,NULL,'Spongebob','Squarepants','Front End Web Developer at Krusty Krab Development','I am spongebob, and I happy doing my work','Krusty Krab Development','spongebob.com'),(7,7,NULL,'Patrick','Star',NULL,NULL,NULL,NULL),(8,8,NULL,'Debug','User',NULL,NULL,NULL,NULL),(9,9,NULL,'debug','debug',NULL,NULL,NULL,NULL),(16,16,NULL,'User','Test',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,7 +444,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`),
   KEY `role_id` (`role_id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,7 +453,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'admin@clouza.net','admin','2022-04-18','2022-04-18');
+INSERT INTO `users` VALUES (1,1,'admin@abcjobs.com','admin1234','2022-04-18','2022-04-18'),(4,2,'email@email.com','qwerty1234','2023-03-09','2023-03-09'),(5,2,'spongebob@email.com','qwerty123','2023-03-09','2023-03-09'),(7,2,'patrick@email.com','qwerty123','2023-03-13','2023-03-13'),(8,2,'debug@email.coma','qwerty123','2023-03-13','2023-03-13'),(9,2,'debug3@email.com','qwerty123','2023-03-13','2023-03-13'),(16,2,'usertest@email.com','qwerty1234','2023-03-14','2023-03-14');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -465,4 +466,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22  8:00:40
+-- Dump completed on 2023-03-14 13:07:55

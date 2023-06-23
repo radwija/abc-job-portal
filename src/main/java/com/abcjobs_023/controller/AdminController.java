@@ -62,7 +62,7 @@ public class AdminController {
 		} else {
 			return new ModelAndView("login/not-permitted");
 		}
-
+		
 	}
 
 	@RequestMapping(value = "/admin/send-bulk")

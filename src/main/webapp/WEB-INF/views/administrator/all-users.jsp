@@ -26,13 +26,11 @@
 							<td>${user.getUser().getEmail()}</td>
 							<td>${user.getTitle() == null ? "-" : user.getTitle()}</td>
 							<td>
-								<a href="profile/${user.getUserId()}">Edit</a>
-								<!-- <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a> -->
-								<a href="profile/${user.getUserId()}">Edit</a>
+								<a href="profile/${user.getUserId()}" class="btn btn-primary">Edit</a>
 								<a href="delete/${user.getUserId()}" onclick="return corfirm('are you sure?')"
 									class="btn btn-danger me-3">Delete</a>
 								<a href="" data-bs-toggle="modal"
-									data-bs-target="#detailModal${user.getUserId()}">Detail</a>
+									data-bs-target="#detailModal${user.getUserId()}" class="btn btn-info">Detail</a>
 							</td>
 						</tr>
 
